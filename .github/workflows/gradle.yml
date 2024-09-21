@@ -1,15 +1,12 @@
 name: Java CI | Gradle | by aCloverophile
 
 on:
-  push:
-    branches:
-      - develop
   pull_request:
     branches:
       - develop
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,8 +16,9 @@ jobs:
         with:
           java-version: '23'
           distribution: ''
+          
       - name: Build with Gradle
-        run: ./gradlew build
+        run: ./gradlew build --no-daemon
 
       - name: Run tests
         run: ./gradlew test
